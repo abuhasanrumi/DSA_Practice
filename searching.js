@@ -23,12 +23,17 @@ function binarySearch(arr, target) {
     let end = arr.length - 1
     let mid = Math.floor((start + end) / 2);
 
-    while (true) {
-        if (mid === target) {
-            return "found"
-        } else if (mid < target) {
+    while (start <= end) {
+        if (arr[mid] === target) {
+            return "Found at index" + mid;
+        } else if (arr[mid] < target) {
             start = mid + 1;
-
+            mid = Math.floor((start + end) / 2);
+        } else {
+            end = mid - 1;
+            mid = Math.floor((start + end) / 2);
         }
     }
 }
+
+console.log(binarySearch(arr2, 40))
