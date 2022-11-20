@@ -1,7 +1,7 @@
 // Linear Searching
 
-let arr = [12, 43, 26, 74, 29, 41, 58, 91, 10];
-let target = 74;
+let arr = [10, 70, 60, 40, 20, 50, 90, 80, 30, 100];
+let target = 30;
 
 function linearSearch(arr, target) {
     for (let i = 0; i <= arr.length; i++) {
@@ -17,6 +17,7 @@ console.log(linearSearch(arr, target));
 
 // Binary Searching
 let arr2 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+let target2 = 90;
 
 function binarySearch(arr, target) {
     let start = 0;
@@ -25,15 +26,15 @@ function binarySearch(arr, target) {
 
     while (start <= end) {
         if (arr[mid] === target) {
-            return "Found at index" + mid;
+            return "Found at index " + mid;
         } else if (arr[mid] < target) {
             start = mid + 1;
             mid = Math.floor((start + end) / 2);
-        } else {
+        } else if (arr[mid] > target) {
             end = mid - 1;
             mid = Math.floor((start + end) / 2);
         }
     }
 }
 
-console.log(binarySearch(arr2, 40))
+console.log(binarySearch(arr2, target2))
