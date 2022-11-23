@@ -1,5 +1,4 @@
 // // Linear Searching
-
 // let arr = [10, 70, 60, 40, 20, 50, 90, 80, 30, 100];
 // let target = 30;
 
@@ -86,32 +85,66 @@
 
 
 
-// Matching Number Binary Search
+// // Matching Number Binary Search
+// function binarySearch(arr, target) {
+//     let start = 0;
+//     let end = arr.length - 1
+//     let mid = Math.floor((start + end) / 2);
+
+//     while (start <= end) {
+//         let counter = 0;
+//         if (arr[mid] === target) {
+//             counter++;
+//         }
+
+//         for (let i = mid - 1; i >= 0; i--) {
+//             if (arr[i] === target) {
+//                 counter++;
+//             }
+//         }
+
+//         for (let i = mid + 1; i < arr.length; i++) {
+//             if (arr[i] === target) {
+//                 counter++;
+//             }
+//         }
+//         return counter;
+//     }
+// }
+
+// console.log(binarySearch([90, 80, 80, 70, 55, 40, 20], 100))
+// console.log(binarySearch([10, 20, 30, 40, 40, 40, 40, 40, 50, 60], 20))
+
+
+
+
+
+// Floor-Ceiling
+
 function binarySearch(arr, target) {
     let start = 0;
     let end = arr.length - 1
     let mid = Math.floor((start + end) / 2);
+    let floor;
+    let ceil;
 
     while (start <= end) {
-        let counter = 0;
         if (arr[mid] === target) {
-            counter++;
+            return mid;
+        } else if (arr[mid] < target) {
+            start = mid + 1;
+            mid = Math.floor((start + end) / 2);
+        } else if (arr[mid] > target) {
+            end = mid - 1;
+            mid = Math.floor((start + end) / 2);
         }
+    }
 
-        for (let i = mid - 1; i >= 0; i--) {
-            if (arr[i] === target) {
-                counter++;
-            }
-        }
-
-        for (let i = mid + 1; i < arr.length; i++) {
-            if (arr[i] === target) {
-                counter++;
-            }
-        }
-        return counter;
+    if (arr[mid] > target) {
+        return "Floor = " + arr[mid - 1] + " Ceiling = " + arr[mid];
+    } else {
+        return "Floor = " + arr[mid] + " Ceiling = " + arr[mid + 1];
     }
 }
 
-console.log(binarySearch([90, 80, 80, 70, 55, 40, 20], 100))
-// console.log(binarySearch([10, 20, 30, 40, 40, 40, 40, 40, 50, 60], 20))
+console.log(binarySearch([10, 20, 30, 40, 50, 60], 55))
